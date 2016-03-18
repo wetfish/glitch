@@ -164,17 +164,19 @@
     </head>
     
     <body>
-        <div class="menu">
-            <h1>What's the URL?</h1>
+        <?php if($_GET['menu'] != 'no'): ?>
+            <div class="menu">
+                <h1>What's the URL?</h1>
 
-            <form action="image.php">
-                <input type="text" name="url" class="url" value="<?php echo $_GET['url']; ?>" />
-                <input type="submit" value="Glitch" />
-                <input type="button" value="Auto Glitch" class="start-auto" />
-                <input type="button" value="Set Interval" class="set-interval" />
-                <input type="button" value="Stop" class="stop-auto" />
-            </form>
-        </div>
+                <form action="image.php">
+                    <input type="text" name="url" class="url" value="<?php echo $_GET['url']; ?>" />
+                    <input type="submit" value="Glitch" />
+                    <input type="button" value="Auto Glitch" class="start-auto" />
+                    <input type="button" value="Set Interval" class="set-interval" />
+                    <input type="button" value="Stop" class="stop-auto" />
+                </form>
+            </div>
+        <?php endif; ?>
 
         <div class="images">
             <div class="front"></div>
