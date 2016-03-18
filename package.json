@@ -1,0 +1,9 @@
+{
+  "name": "glitchfish",
+  "version": "0.1.0",
+  "description": "Randomly mutate images",
+  "author": "Rachel Fish <rachel@wetfish.net> (https://wetfish.net)",
+  "dependencies": {
+    "wetfish-basic": "^0.7.1"
+  }
+}
