@@ -1,15 +1,15 @@
 <html>
     <head>
         <title>Welcome to HTML</title>
-        
+
         <script src="node_modules/wetfish-basic/dist/basic.js"></script>
-        
+
         <style>
             html, body {
                 height: 100%;
                 margin-bottom: 250px;
             }
-            
+
             body {
                 background-color:#000;
                 color:#eee;
@@ -22,7 +22,11 @@
                 bottom: 0;
                 background-color: rgba(0, 0, 0, 0.8);
             }
-            
+
+            .hide {
+                display: none;
+            }
+
             .url {
                 width: 600px;
             }
@@ -60,7 +64,7 @@
                 display: none;
             }
         </style>
-        
+
         <script>
             var interval = <?php if($_GET['interval']) { echo $_GET['interval']; } else { echo '3000'; } ?>;
             var auto;
@@ -69,7 +73,7 @@
             {
                 // A count of errors to prevent reloading images forever
                 var errors = 0;
-                
+
                 $('form').on('submit glitch', function(event)
                 {
                     event.preventDefault();
@@ -109,7 +113,7 @@
 
                         // Remove the broken image
                         $('.front').html('');
-                        
+
                         // If there was an error, resubmit the form
                         setTimeout(function()
                         {
@@ -125,7 +129,7 @@
                 {
                     // Don't start another interval if we're already auto-glitching
                     if(auto) return;
-                    
+
                     $('.stop-auto').style({display: 'inline'});
 
                     auto = setInterval(function()
@@ -151,7 +155,7 @@
                 });
 
                 <?php
-                
+
                 if($_GET['url'])
                     echo "$('form').trigger('glitch');";
 
@@ -162,21 +166,19 @@
             });
         </script>
     </head>
-    
-    <body>
-        <?php if($_GET['menu'] != 'no'): ?>
-            <div class="menu">
-                <h1>What's the URL?</h1>
 
-                <form action="image.php">
-                    <input type="text" name="url" class="url" value="<?php echo $_GET['url']; ?>" />
-                    <input type="submit" value="Glitch" />
-                    <input type="button" value="Auto Glitch" class="start-auto" />
-                    <input type="button" value="Set Interval" class="set-interval" />
-                    <input type="button" value="Stop" class="stop-auto" />
-                </form>
-            </div>
-        <?php endif; ?>
+    <body>
+        <div class="menu <?php if($_GET['menu'] == 'no') { echo 'hide'; } ?>">
+            <h1>What's the URL?</h1>
+
+            <form action="image.php">
+                <input type="text" name="url" class="url" value="<?php echo $_GET['url']; ?>" />
+                <input type="submit" value="Glitch" />
+                <input type="button" value="Auto Glitch" class="start-auto" />
+                <input type="button" value="Set Interval" class="set-interval" />
+                <input type="button" value="Stop" class="stop-auto" />
+            </form>
+        </div>
 
         <div class="images">
             <div class="front"></div>
