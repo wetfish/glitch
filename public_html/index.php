@@ -154,6 +154,12 @@
                     auto = false;
                 });
 
+                $('.background-color').on('click', function(event)
+                {
+                    var color = prompt("What color would you like? (Supports hex '#fc2d75' or strings 'blue')");
+                    $('body').style({'background-color': color});
+                });
+
                 <?php
 
                 if($_GET['url'])
@@ -176,6 +182,7 @@
                 <input type="submit" value="Glitch" />
                 <input type="button" value="Auto Glitch" class="start-auto" />
                 <input type="button" value="Set Interval" class="set-interval" />
+                <input type="button" value="Background Color" class="background-color" />
                 <input type="button" value="Stop" class="stop-auto" />
             </form>
         </div>
