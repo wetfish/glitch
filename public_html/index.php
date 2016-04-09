@@ -11,7 +11,7 @@
             }
 
             body {
-                background-color:#000;
+                background-color:<?php echo (isset($_GET['background'])) ? $_GET['background'] : '#000' ?>;
                 color:#eee;
                 font-family:tahoma, sans-serif;
             }
