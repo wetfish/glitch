@@ -1,0 +1,21 @@
+FROM docker.io/node:14 AS npm
+
+COPY ./public_html /public_html
+
+RUN set -exu \
+  && cd /public_html \
+  && npm install
+
+FROM docker.io/nginx:1.22.1-alpine
+
+COPY --from=npm /public_html /var/www
+
+RUN set -exu \
+  && chown -R nginx:nginx /var/www
+
+# taken from nginx dockerfile here
+# https://github.com/nginxinc/docker-nginx/blob/fef51235521d1cdf8b05d8cb1378a526d2abf421/stable/alpine/Dockerfile
+ENTRYPOINT ["/docker-entrypoint.sh"]
+EXPOSE 80
+STOPSIGNAL SIGQUIT
+CMD ["nginx", "-g", "daemon off;"]

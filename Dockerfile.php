@@ -19,7 +19,8 @@ RUN set -exu \
       --shell /sbin/nologin \
       --disabled-password \
       fishy \
-  && chown -R fishy:fishy /var/www
+  && chown -R fishy:fishy /var/www \
+  && chmod -R 755 /var/www
 
 USER fishy
 
