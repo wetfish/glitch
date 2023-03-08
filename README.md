@@ -10,11 +10,6 @@ for production deployment and full stack dev env info.
 
 For development, to run just this stack, do 
 ```bash
-cp mariadb.env.example mariadb.env
-# -> edit, change passwords and other info as needed
-cp php.env.example php.env
-# -> edit, change passwords to match
-
 docker compose \
   -f docker-compose.dev.yml \
   up -d \
