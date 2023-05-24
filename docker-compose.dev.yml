@@ -17,7 +17,7 @@ services:
     tmpfs: /tmp
     # normally behind centeral traefik defined in production-manifests/services/traefik
     ports:
-      - "127.0.0.1:80:80"
+      - "127.0.0.1:2403:80"
     # join glitch-internal network
     networks:
       glitch-internal: {}
