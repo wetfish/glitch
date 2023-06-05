@@ -1,0 +1,41 @@
+# version 3+ does different things re: networking from 2.x
+# mainly things to support swarms
+# aka things we don't need/want
+version: '2.4'
+services:
+  # httpd
+  glitch-web:
+    # for development, build the image
+    image: ghcr.io/wetfish/glitch:dev-nginx
+    build:
+      context: .
+      dockerfile: Dockerfile.nginx
+    container_name: glitch-web
+    restart: unless-stopped
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf
+    tmpfs: /tmp
+    # normally behind centeral traefik defined in production-manifests/services/traefik
+    ports:
+      - "127.0.0.1:2403:80"
+    # join glitch-internal network
+    networks:
+      glitch-internal: {}
+
+  # php-fpm
+  glitch-php:
+    # for development, build the image
+    image: ghcr.io/wetfish/glitch:dev-php
+    build:
+      context: .
+      dockerfile: Dockerfile.php
+    container_name: glitch-php
+    restart: unless-stopped
+    tmpfs: /tmp
+    networks:
+      glitch-internal: {}
+
+networks:
+  # ephemeral, created for us by compose
+  glitch-internal:
+    driver: bridge
