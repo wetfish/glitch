@@ -1,4 +1,4 @@
-name: Docker Image Build - Nginx
+name: Docker Image Build - PHP
 on:
   # build when push to main or release happens
   push:
